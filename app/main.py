@@ -77,6 +77,8 @@ if uploaded_file:
             except Exception as e:
                 st.error(f"Error processing email: {e}")
     result_df = pd.DataFrame(results)
+    # Sort by Risk Score descending so higher risk appears first
+    result_df = result_df.sort_values(by="Risk Score", ascending=False)
     st.subheader("\U0001F4CA Compliance Analysis Results")
     st.dataframe(result_df, use_container_width=True)
     st.success("Analysis completed successfully \u2705")
